@@ -1,3 +1,5 @@
+import os
+
 """
 Django settings for livraria project.
 
@@ -25,7 +27,7 @@ SECRET_KEY = "django-insecure-(1bf(@h9nza##s$#$&k+o(x)k4e999pj4nm&9+aog#+)_f&6@_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "livraria.urls"
@@ -128,3 +131,7 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
