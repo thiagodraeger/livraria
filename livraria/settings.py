@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     'rest_framework_simplejwt',
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -140,6 +141,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
@@ -155,3 +157,9 @@ MEDIA_URL = "http://localhost:8000/media/"
 MEDIA_ENDPOINT = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media_files/")
 FILE_UPLOAD_PERMISSIONS = 0o640
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Livraria API",
+    "DESCRIPTION": "API para gerenciamento de livraria,, incluindo endpoints e documentação.",
+    "VERSION": "1.0.0",
+}
