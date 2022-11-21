@@ -1,4 +1,5 @@
 import os
+import environ
 
 """
 Django settings for livraria project.
@@ -163,3 +164,12 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "API para gerenciamento de livraria,, incluindo endpoints e documentação.",
     "VERSION": "1.0.0",
 }
+
+# Carrega as variáveis de ambiente do sistema operacional e as prepara para usá-las
+env = environ.Env()
+environ.Env.read_env((os.path.join(BASE_DIR, '.env')))
+
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
+DATABASES = {'default': env.db()}
